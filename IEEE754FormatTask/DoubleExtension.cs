@@ -12,7 +12,7 @@ namespace IEEE754FormatTask
         /// <returns>A string representation of a double type number in the IEEE754 format.</returns>
         public static string GetIEEE754Format(this double number)
         {
-            throw  new NotImplementedException("You need to implement this function.");
+            throw new NotImplementedException("You need to implement this function.");
         }
     }
 }

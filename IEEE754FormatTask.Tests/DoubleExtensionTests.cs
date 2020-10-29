@@ -1,6 +1,8 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace IEEE754FormatTask.Tasks
+#pragma warning disable CA1707
+
+namespace IEEE754FormatTask.Tests
 {
     public class DoubleExtensionTests
     {
@@ -11,10 +13,8 @@ namespace IEEE754FormatTask.Tasks
         [TestCase(double.MaxValue, ExpectedResult = "0111111111101111111111111111111111111111111111111111111111111111")]
         [TestCase(double.Epsilon, ExpectedResult = "0000000000000000000000000000000000000000000000000000000000000001")]
         [TestCase(double.NaN, ExpectedResult = "1111111111111000000000000000000000000000000000000000000000000000")]
-        [TestCase(double.NegativeInfinity,
-            ExpectedResult = "1111111111110000000000000000000000000000000000000000000000000000")]
-        [TestCase(double.PositiveInfinity,
-            ExpectedResult = "0111111111110000000000000000000000000000000000000000000000000000")]
+        [TestCase(double.NegativeInfinity, ExpectedResult = "1111111111110000000000000000000000000000000000000000000000000000")]
+        [TestCase(double.PositiveInfinity, ExpectedResult = "0111111111110000000000000000000000000000000000000000000000000000")]
         [TestCase(-0.0, ExpectedResult = "1000000000000000000000000000000000000000000000000000000000000000")]
         [TestCase(0.0, ExpectedResult = "0000000000000000000000000000000000000000000000000000000000000000")]
         public string GetIeee754Format_TestWithDifferentInputNumbers_ReturnsStringIEEE754(double number)

@@ -1,8 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IEEE754FormatTask", "IEEE754FormatTask\IEEE754FormatTask.csproj", "{41DED226-F265-413B-A788-4F33694EB5D3}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IEEE754FormatTask", "IEEE754FormatTask\IEEE754FormatTask.csproj", "{41DED226-F265-413B-A788-4F33694EB5D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IEEE754FormatTask.Tests", "IEEE754FormatTask.Tests\IEEE754FormatTask.Tests.csproj", "{C5459A12-9227-4265-B726-94AB520EA775}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IEEE754FormatTask.Tests", "IEEE754FormatTask.Tests\IEEE754FormatTask.Tests.csproj", "{C5459A12-9227-4265-B726-94AB520EA775}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,11 @@ Global
 		{C5459A12-9227-4265-B726-94AB520EA775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5459A12-9227-4265-B726-94AB520EA775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5459A12-9227-4265-B726-94AB520EA775}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8D68015-8AD3-4919-BBFE-7EB759586F8C}
 	EndGlobalSection
 EndGlobal
