@@ -1,7 +1,16 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics.Metrics;
+using System.Runtime.InteropServices;
 
 namespace IEEE754FormatTask
 {
+    [StructLayout(LayoutKind.Explicit)]
+    struct Converter
+    {
+        [FieldOffset(0)]public double n;
+        [FieldOffset(0)]public long m;
+    }
     public static class DoubleExtension
     {
         /// <summary>
@@ -12,7 +21,17 @@ namespace IEEE754FormatTask
         /// <returns>A string representation of a double type number in the IEEE754 format.</returns>
         public static string GetIEEE754Format(this double number)
         {
-            throw new NotImplementedException("You need to implement this function.");
+            Converter converter = new Converter() { n = number };
+            long longNumber = converter.m;
+            const int bitsInByte = 8;
+            const int bitsCount = sizeof(double) * bitsInByte;
+            char[] result = new char[bitsCount];
+            result[0] = longNumber < 0 ? '1' : '0';
+            for (int i = bitsCount - 2, j = 1 ; i >= 0; i--, j++)
+            {
+                result[j] = (longNumber & (1L << i)) !=0 ? '1' : '0';
+            }
+            return new string(result);
         }
     }
 }
