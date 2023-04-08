@@ -6,12 +6,16 @@ using System.Runtime.InteropServices;
 namespace IEEE754FormatTask
 {
     [StructLayout(LayoutKind.Explicit)]
-    struct Converter
+    public struct DoubleExtension
     {
-        [FieldOffset(0)]public double n;
-        [FieldOffset(0)]public long m;
+        [FieldOffset(0)]
+        public double DoubleTerm;
+
+        [FieldOffset(0)]
+        public long LongTerm;
     }
-    public static class DoubleExtension
+
+    public static class DoubleExtensionClass
     {
         /// <summary>
         /// Returns a string representation of a double type number
@@ -21,16 +25,17 @@ namespace IEEE754FormatTask
         /// <returns>A string representation of a double type number in the IEEE754 format.</returns>
         public static string GetIEEE754Format(this double number)
         {
-            Converter converter = new Converter() { n = number };
-            long longNumber = converter.m;
+            DoubleExtension converter = new DoubleExtension() { DoubleTerm = number };
+            long longNumber = converter.LongTerm;
             const int bitsInByte = 8;
             const int bitsCount = sizeof(double) * bitsInByte;
             char[] result = new char[bitsCount];
             result[0] = longNumber < 0 ? '1' : '0';
-            for (int i = bitsCount - 2, j = 1 ; i >= 0; i--, j++)
+            for (int i = bitsCount - 2, j = 1; i >= 0; i--, j++)
             {
-                result[j] = (longNumber & (1L << i)) !=0 ? '1' : '0';
+                result[j] = (longNumber & (1L << i)) != 0 ? '1' : '0';
             }
+
             return new string(result);
         }
     }
