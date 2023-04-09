@@ -5,17 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace IEEE754FormatTask
 {
-    [StructLayout(LayoutKind.Explicit)]
-    public struct DoubleExtension
-    {
-        [FieldOffset(0)]
-        public double DoubleTerm;
-
-        [FieldOffset(0)]
-        public long LongTerm;
-    }
-
-    public static class DoubleExtensionClass
+    public static class DoubleExtension
     {
         /// <summary>
         /// Returns a string representation of a double type number
@@ -25,7 +15,7 @@ namespace IEEE754FormatTask
         /// <returns>A string representation of a double type number in the IEEE754 format.</returns>
         public static string GetIEEE754Format(this double number)
         {
-            DoubleExtension converter = new DoubleExtension() { DoubleTerm = number };
+            DoubleToLongConverter converter = new DoubleToLongConverter() { DoubleTerm = number };
             long longNumber = converter.LongTerm;
             const int bitsInByte = 8;
             const int bitsCount = sizeof(double) * bitsInByte;
@@ -37,6 +27,16 @@ namespace IEEE754FormatTask
             }
 
             return new string(result);
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        private struct DoubleToLongConverter
+        {
+            [FieldOffset(0)]
+            public readonly long LongTerm;
+
+            [FieldOffset(0)]
+            public double DoubleTerm;
         }
     }
 }
