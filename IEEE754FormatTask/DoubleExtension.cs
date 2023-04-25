@@ -15,7 +15,7 @@ namespace IEEE754FormatTask
         /// <returns>A string representation of a double type number in the IEEE754 format.</returns>
         public static string GetIEEE754Format(this double number)
         {
-            DoubleToLongConverter converter = new DoubleToLongConverter() { DoubleTerm = number };
+            DoubleToLongConverter converter = new DoubleToLongConverter(number);
             long longNumber = converter.LongTerm;
             const int bitsInByte = 8;
             const int bitsCount = sizeof(double) * bitsInByte;
@@ -30,13 +30,16 @@ namespace IEEE754FormatTask
         }
 
         [StructLayout(LayoutKind.Explicit)]
-        private struct DoubleToLongConverter
+        private readonly struct DoubleToLongConverter
         {
-            [FieldOffset(0)]
+            [field: FieldOffset(0)]
             public readonly long LongTerm;
 
             [FieldOffset(0)]
-            public double DoubleTerm;
+            private readonly double doubleTerm;
+
+            public DoubleToLongConverter(double doubleTerm)
+                : this() => this.doubleTerm = doubleTerm;
         }
     }
 }
